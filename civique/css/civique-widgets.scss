@@ -1,0 +1,29 @@
+//
+//	civique-widgets.scss
+//	--
+//	styling for Civique widgets
+//
+
+@import 'lhs-variables';
+
+.widget_civique_fundraiser
+{
+	.fundraiser
+	{
+		display: block;
+		width: 100%;
+		height: 1.5em;
+		margin-bottom: $margin-bottom;
+		background-color: #dfd;
+		.progress
+		{
+			display: block;
+			height: 1.5em;
+			line-height: 1.5em;
+			text-align: center;
+			color: #fff;
+			background-color: #009900;
+			// never define width here; the widget has an inline style
+		}
+	}
+}

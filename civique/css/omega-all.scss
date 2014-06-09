@@ -1,0 +1,153 @@
+//
+//	omega-all.scss
+//	--
+//	styles to be used on all screen sizes
+//
+
+@import 'lhs-variables';
+
+body
+{
+	font-family: $font-family;
+}
+
+table
+{
+	margin-bottom: golden-ratio(1em, 1);
+	tr
+	{
+		border: solid 1px $border-color;
+		th
+		{
+			font-weight: 700;
+		}
+		td, th
+		{
+			padding: 7px;
+		}
+	}
+	tbody
+	{
+		td, th
+		{
+			&:odd
+			{
+
+			}
+		}
+	}
+}
+
+.stripe
+{
+	@include clearfix;
+	&.padded
+	{
+		padding-top: 3em;
+		padding-bottom: 3em;
+	}
+	&.stripe-rule
+	{
+		border-top: 1px solid $border-color;
+	}
+}
+
+.stripe-image-cover
+{
+	.image-cover
+	{
+		width: 100%;
+		background-size: cover;
+	}
+}
+
+.position-relative
+{
+	position: relative;
+}
+
+@media screen and (min-width: 481px)
+{
+	.stripe-image-cover
+	{
+
+		.image-cover
+		{
+			height: 400px;
+			padding: 20px;
+			position: static;
+
+			.height-100
+			{
+				height: 360px;
+			}
+
+			.bottom
+			{
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+
+			.panel
+			{
+				padding: 20px;
+				color: #fff;
+				background: #000;
+				display: block;
+
+				a
+				{
+					color: #fff;
+					text-decoration: underline;
+				}
+
+				p
+				{
+					margin-bottom: 0;
+				}
+
+				.rgba &
+				{
+					background: rgba(0,0,0,0.7);
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 480px)
+{
+
+.stripe-image-cover
+{
+	.image-cover
+	{
+		padding: 1em;
+		.panel
+		{
+			padding: 1em;
+			background: #000;
+			color: #fff;
+			margin-top: 7em;
+
+			.rgba &
+			{
+				background: rgba(0,0,0,0.6);
+			}
+
+			h2
+			{
+				font-size: 14px;
+				font-weight: 700;
+			}
+
+			p
+			{
+				font-size: 14px;
+				margin-bottom: 0;
+			}
+		}
+	}
+}
+}

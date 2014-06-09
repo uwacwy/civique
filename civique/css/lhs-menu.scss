@@ -1,0 +1,441 @@
+//
+//	lhs-menu.scss
+//	--
+//	compiles the menu
+//
+
+.headroom {
+	@include transition(transform 200ms linear);
+}
+.headroom--pinned {
+	@include transform(translateY(0%));
+}
+.headroom--unpinned {
+	@include transform(translateY(-100%));
+}
+
+//
+//	mobile menu
+//	--
+//	for screens 640px wide and less
+//
+
+@media screen and (max-width: 640px)
+{
+	body.admin-bar
+	{
+		header.main-header
+		{
+			top: 46px;
+		}
+	}
+
+	header.main-header
+	{
+		background: $menu-background-color;
+		padding: 8px;
+		@include clearfix;
+	}
+
+	section.brand
+	{
+		h1
+		{
+			font-size: 24px;
+			display: block;
+			line-height: 50px - 16px;
+
+			a
+			{
+				color: #fff;
+			}
+		}
+	}
+
+	.mobile-wrap
+	{
+		nav.search, nav.menu
+		{
+			display: none;
+		}
+
+		&.active
+		{
+			nav.menu
+			{
+				display: block;
+				max-height: 75vh;
+				overflow: auto;
+				margin-top: 8px;
+				margin-left: -8px;
+				margin-right: -8px;
+				background: #fff;
+
+				> ul
+				{
+					list-style: none;
+					margin: 0;
+					padding: 0;
+					> li
+					{
+						> a
+						{
+							border-bottom: solid 1px $border-color;
+							display: block;
+							padding: 0.5em;
+						}
+
+						> .sub-menu
+						{
+							list-style: none;
+							margin: 0;
+							padding: 0;
+							a
+							{
+								padding: 0.5em;
+								padding-left: 1em;
+								display: block;
+								border-bottom: solid 1px $border-color;
+							}
+							.sub-menu
+							{
+								list-style: none;
+								margin: 0;
+								padding: 0;
+								a
+								{
+									padding-left: 2em;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			nav.search
+			{
+				display: block;
+
+				ul
+				{
+					list-style: none;
+					margin: 0;
+					padding: 0;
+					li
+					{
+						form
+						{
+							margin: 8px 0 0 0;
+						}
+						label span {display: none;}
+						.search-field
+						{
+							background: lighten($menu-background-color, 20%);
+							text-align: center;
+							width: 100%;
+							border: none;
+							border-radius: 5px;
+							padding: 3px;
+							&:focus
+							{
+								background: #fff !important;
+								text-align: left;
+							}
+						}
+						.search-submit
+						{
+							display: none;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	.hide-mobile.active
+	{
+
+	}
+
+	.mobile-menu-toggle
+	{
+		border-color: darken($menu-background-color, 20%);
+		background: #fff;
+		margin: 0;
+		padding: 4px;
+		float: right;
+
+		.hamburger-bar
+		{
+			margin: 4px;
+			display: block;
+			height: 4px;
+			width: 32px;
+			background: $menu-background-color;
+		}
+		.borderradius &
+		{
+			border-radius: 3px;
+			border: solid 1px $border-color;
+		}
+	}
+
+}
+
+//
+//	large menu
+//	--
+//	for displays larger than 640 px
+//
+
+@media screen and (min-width: 641px)
+{
+	body
+	{
+		padding-top: $header-height;
+	}
+	body.admin-bar
+	{
+		header.main-header
+		{
+			top: 32px;
+		}
+	}
+
+	header.main-header
+	{
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index: $z-header;
+	}
+	section.stripe-image-cover
+	{
+		position: relative;
+		z-index: $z-cover-image;
+	}
+
+	.mobile-menu-toggle {display: none;}
+
+	nav.menu
+	{
+		display: block;
+		float: left;
+
+		> ul
+		{
+			line-height: $header-height;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+
+			> li
+			{
+				z-index: $z-header + 1;
+				float: left;
+				line-height: $header-height;
+				padding: 0 1em;
+				position: relative;
+
+				&.icon-home a:before
+				{
+					color: inherit;
+					content: "\f102";
+					display: inline-block;
+					font-family: 'dashicons';
+					font-size: 30px;
+					margin-right: 10px;
+					vertical-align: top;
+				}
+
+				&.menu-item-has-children > a:after
+				{
+					color: inherit;
+					content: "\f347";
+					display: inline-block;
+					font-family: 'dashicons';
+					font-size: 18px;
+					margin-left: 10px;
+					vertical-align: middle;
+				}
+
+				.no-js &:hover, // falls back to a CSS hover if we don't have JS on
+				.js &.hover // uses hoverIntent to make the usability a little fresher
+				{
+					background: #fff;
+
+					> a
+					{
+						background: #fff;
+						color: $lhs-blue;
+					}
+
+					> ul.sub-menu
+					{	
+						display: block;
+					}
+				}
+
+				>a
+				{
+					color: #fff;
+					display: block;
+					font-size: 1.5em;
+					font-weight: 100;
+					height: $header-height;
+					line-height: $header-height;
+					text-decoration: none;
+
+					&:hover
+					{
+					}
+				}
+				> ul.sub-menu
+				{
+					background: #fff;
+					display: none;
+					left: -1px;
+					list-style: none;
+					margin: -1px 0 0 0;
+					padding: 0;
+					position: absolute;
+					top: 100%;
+					width: 250px;
+					z-index: $z-header - 2;
+
+					border-bottom: 3px solid darken($menu-background-color, 10%);
+					border-left: solid 1px darken($menu-background-color, 10%);
+					border-right: solid 1px darken($menu-background-color, 10%);
+
+					>li
+					{
+						 a
+						{
+							padding: 0.5em;
+							display: block;
+							width: 100%;
+							border-bottom: $border-color solid 1px;
+						}
+					}
+
+					.sub-menu
+					{
+						margin: 0;
+						padding: 0;
+						list-style: none;
+
+						a
+						{
+							background-color: #eee;
+							padding-left: 1.0em;
+						}
+					}
+				}
+			}
+		}
+	}
+
+
+	header.main-header
+	{
+		background-color: $menu-background-color;
+		color: #fff;
+		display: block;
+		height: $header-height;
+		width: 100%;
+		border-bottom: solid 1px darken($menu-background-color, 10%);
+		@include clearfix;
+
+		.rgba &
+		{
+			background-color: transparentize($menu-background-color, 0.07);
+		}
+
+		section.brand
+		{
+			float: left;
+			margin-right: 2em;
+			margin-left: 2em;
+			h1
+			{
+				font-size: 2em;
+				line-height: $header-height;
+				margin: 0;
+				padding: 0;
+					background: URL("img/brand_logo.png") no-repeat left 50%;
+				a
+				{
+					text-decoration: none;
+					display: block;
+					line-height: $header-height;
+					font-weight: 400;
+					color: #fff;
+					padding-left: $header-image-width + 20px;
+				}
+			}
+		}
+		nav.right
+		{
+			float: right;
+		}
+		nav.search
+		{
+			float: right;
+			ul
+			{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.search-li
+			{
+				$structure-color: #fff;
+
+				float: right;
+				margin: 30px 2em;
+
+				label:before
+				{
+					font-family: 'dashicons';
+					content: "\f179";
+					color: $structure-color;
+					font-size: 2em;
+					vertical-align: middle;
+					display: inline-block;
+				}
+				.search-field
+				{
+					border: none;
+					background-color: transparent;
+					border-bottom: 2px solid $structure-color;
+					padding: 6px;
+					margin: 0;
+					font-size: 18px;
+					color: $structure-color;
+					@include transition(all 200ms linear);
+
+					&:hover
+					{
+						background-color: lighten($menu-background-color, 10%);
+					}
+					&:focus
+					{
+						background-color: $structure-color !important;
+						border-bottom-color: $menu-background-color;
+						color: $lhs-blue;
+					}
+				}
+				.search-submit
+				{
+					display: none;
+				}
+				.screen-reader-text
+				{
+					display: none;
+				}
+			}
+		}
+
+
+	}
+}
