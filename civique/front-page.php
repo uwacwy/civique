@@ -20,7 +20,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-md-4 hide-sm">
 					<div class="height-100 position-relative">
 						<div class="panel bottom">
 							<h3>Welcome</h3>

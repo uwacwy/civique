@@ -1,0 +1,1 @@
+sass -w "civique\css\lhs.scss":"civique\css\lhs.css"

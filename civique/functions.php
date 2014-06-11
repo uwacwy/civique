@@ -44,7 +44,7 @@ if( !function_exists('lhs_theme_features') ) :
 		'flex-width'             => false,
 		'flex-height'            => false,
 		'random-default'         => true,
-		'header-text'            => true,
+		'header-text'            => false,
 		'default-text-color'     => '',
 		'uploads'                => true,
 		'wp-head-callback'       => '',

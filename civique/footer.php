@@ -23,6 +23,7 @@
 							substr(get_theme_mod('contact_phone'), 6, 4)
 						);
 				?>
+				<p><?php wp_loginout(); ?></p>
 			</div>
 			<div class="col-md-9">				
 				<h3><?php bloginfo('name'); ?></h3>

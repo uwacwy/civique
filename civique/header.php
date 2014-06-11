@@ -37,10 +37,16 @@
 			<span class="hamburger-bar"></span>
 		</button>
 		<section class="brand">
-			<h1><a href="<?php bloginfo('url'); ?>"><?php bloginfo('name'); ?></a></h1>
+			<h1><a href="<?php bloginfo('url'); ?>"><?php
+				if( get_theme_mod('header_display_text') == "" )
+					bloginfo('name');
+				else
+					echo get_theme_mod('header_display_text');
+			?></a></h1>
 		</section>
 		<nav class="menu">
 			<ul>
+				<li class="icon-home hide-lg"><a href="<?php bloginfo('url'); ?>">Home</a></li>
 				<?php wp_nav_menu( array('theme_location' => 'main-menu', 'container' => false, 'items_wrap' => '%3$s') ); ?>
 			</ul>
 		</nav>

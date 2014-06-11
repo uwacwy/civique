@@ -1456,7 +1456,7 @@ ul.sidebar {
     clear: both; }
   .next-prev > div > em {
     text-align: center;
-    padding: 0.5em;
+    padding: 0.8em;
     display: block;
     background: #ddd;
     color: #999; }
@@ -1466,7 +1466,7 @@ ul.sidebar {
     text-decoration: none;
     color: #fff;
     background: #3d5ba9;
-    padding: 0.5em; }
+    padding: 0.8em; }
 
 .pagination {
   margin-bottom: 1em; }
@@ -1536,13 +1536,13 @@ img {
 .widget_civique_fundraiser .fundraiser {
   display: block;
   width: 100%;
-  height: 1.5em;
+  height: 2em;
   margin-bottom: 1em;
   background-color: #dfd; }
   .widget_civique_fundraiser .fundraiser .progress {
     display: block;
-    height: 1.5em;
-    line-height: 1.5em;
+    height: 2em;
+    line-height: 2em;
     text-align: center;
     color: #fff;
     background-color: #009900; }
@@ -1572,9 +1572,12 @@ img {
   -o-transform: translateY(-100%);
   transform: translateY(-100%); }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 782px) {
   body.admin-bar header.main-header {
-    top: 46px; }
+    top: 46px; } }
+@media screen and (max-width: 640px) {
+  .hide-sm {
+    display: none; }
 
   header.main-header {
     background: #2f4784;
@@ -1662,7 +1665,28 @@ img {
     .borderradius .mobile-menu-toggle {
       border-radius: 3px;
       border: solid 1px #eeeeee; } }
+@media screen and (max-width: 1300px) {
+  header.main-header section.brand {
+    margin: 0 0 0 1em !important; } }
+@media screen and (max-width: 1024px) {
+  header.main-header section.brand {
+    display: none; } }
+header.main-header section.brand h1 a {
+  padding-left: 75px; }
+  @media screen and (min-width: 640px) and (max-width: 1300px) {
+    header.main-header section.brand h1 a {
+      text-indent: -9999px; } }
+@media screen and (max-width: 1600px) {
+  header.main-header nav.search .search-form {
+    display: none; } }
+@media screen and (max-width: 782px) {
+  header.main-header nav.menu {
+    font-size: 12px; } }
+
 @media screen and (min-width: 641px) {
+  .hide-lg {
+    display: none; }
+
   body {
     padding-top: 100px; }
 
@@ -1693,7 +1717,7 @@ img {
       nav.menu > ul > li {
         z-index: 10000;
         float: left;
-        line-height: 100px;
+        line-height: 100%;
         padding: 0 1em;
         position: relative; }
         nav.menu > ul > li.icon-home a:before {
@@ -1745,7 +1769,7 @@ img {
             padding: 0.5em;
             display: block;
             width: 100%;
-            border-bottom: #eeeeee solid 1px; }
+            border-bottom: #ccc solid 1px; }
           nav.menu > ul > li > ul.sub-menu .sub-menu {
             margin: 0;
             padding: 0;
@@ -1775,9 +1799,9 @@ img {
         font-size: 2em;
         line-height: 100px;
         margin: 0;
-        padding: 0;
-        background: URL("img/brand_logo.png") no-repeat left 50%; }
+        padding: 0; }
         header.main-header section.brand h1 a {
+          background: URL("img/brand_logo.png") no-repeat left 50%;
           text-decoration: none;
           display: block;
           line-height: 100px;
