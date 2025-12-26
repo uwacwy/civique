@@ -1,0 +1,19 @@
+{
+	"printWidth": 80,
+	"tabWidth": 3,
+	"useTabs": true,
+	"singleQuote": false,
+	"trailingComma": "es5",
+	"semi": true,
+	"embeddedLanguageFormatting": "auto",
+	"plugins": ["@prettier/plugin-php"],
+	"overrides": [
+		{
+			"files": "*.php",
+			"parser": "php",
+			"options": {
+				"phpVersion": "8.0"
+			}
+		}
+	]
+}

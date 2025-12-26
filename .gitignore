@@ -1,0 +1,12 @@
+node_modules/
+vendor/
+composer.phar
+dist/
+civique/js/dist/
+wp-content/
+copilot.todo.md
+civique/assets/
+civique/civique.css
+civique/civique.css.map
+civique/civique.js
+civique/civique.js.map

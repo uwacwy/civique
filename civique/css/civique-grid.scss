@@ -1,0 +1,135 @@
+@use "sass:color";
+@use "sass:math";
+
+$grid-columns: 12;
+$grid-gutter: 30px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+
+$half-gutter: math.div($grid-gutter, 2);
+
+$btn-background: #3d5ba9;
+$btn-donate-background: #ed2024;
+
+@function span-percentage($span) {
+	@return math.div($span, $grid-columns) * 100%;
+}
+
+.container {
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-left: $half-gutter;
+	padding-right: $half-gutter;
+
+	@media (min-width: $breakpoint-md) {
+		max-width: 750px;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 970px;
+	}
+
+	@media (min-width: $breakpoint-xl) {
+		max-width: 1170px;
+	}
+}
+
+.container-fluid {
+	width: 100%;
+	padding-left: $half-gutter;
+	padding-right: $half-gutter;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -$half-gutter;
+	margin-right: -$half-gutter;
+}
+
+.row > [class*="col-"] {
+	box-sizing: border-box;
+	padding-left: $half-gutter;
+	padding-right: $half-gutter;
+	flex: 0 0 100%;
+	max-width: 100%;
+}
+
+.btn {
+	display: inline-block;
+	padding: 0.6em 1.5em;
+	margin-bottom: 0;
+	font-weight: 600;
+	line-height: 1.4;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	cursor: pointer;
+	user-select: none;
+	border: 1px solid color.scale($btn-background, $lightness: -10%);
+	border-radius: 4px;
+	background-color: $btn-background;
+	color: #fff;
+	text-decoration: none;
+	transition:
+		background-color 0.2s ease-in-out,
+		border-color 0.2s ease-in-out,
+		color 0.2s ease-in-out;
+}
+
+.btn:hover,
+.btn:focus {
+	background-color: color.scale($btn-background, $lightness: 5%);
+	border-color: color.scale($btn-background, $lightness: 5%);
+	color: #fff;
+	text-decoration: none;
+}
+
+.btn:focus {
+	outline: none;
+}
+
+.btn:active {
+	background-color: color.scale($btn-background, $lightness: -5%);
+	border-color: color.scale($btn-background, $lightness: -5%);
+}
+
+.btn[disabled],
+fieldset[disabled] .btn {
+	pointer-events: none;
+	opacity: 0.65;
+}
+
+.btn-donate {
+	background-color: $btn-donate-background;
+	border-color: color.scale($btn-donate-background, $lightness: -10%);
+}
+
+.btn-donate:hover,
+.btn-donate:focus {
+	background-color: color.scale($btn-donate-background, $lightness: 5%);
+	border-color: color.scale($btn-donate-background, $lightness: 5%);
+}
+
+@for $i from 0 through $grid-columns {
+	.col-md-offset-#{$i} {
+		margin-left: 0;
+	}
+}
+
+@media (min-width: $breakpoint-md) {
+	@for $i from 1 through $grid-columns {
+		.col-md-#{$i} {
+			flex: 0 0 span-percentage($i);
+			max-width: span-percentage($i);
+		}
+	}
+
+	@for $i from 0 through $grid-columns {
+		.col-md-offset-#{$i} {
+			margin-left: span-percentage($i);
+		}
+	}
+}

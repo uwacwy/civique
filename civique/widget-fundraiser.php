@@ -1,20 +1,26 @@
 <?php
-//
-//	widget-fundraiser.php
-//	--
-//	a widget to display a fundraiser in progress
-//
 
-class Civique_Fundraiser_Widget extends WP_Widget {
-
+/**
+ * Civique Fundraiser Widget
+ *
+ * @package Civique
+ */
+class Civique_Fundraiser_Widget extends WP_Widget
+{
 	/**
 	 * Register widget with WordPress.
 	 */
-	function __construct() {
+	function __construct()
+	{
 		parent::__construct(
-			'civique_fundraiser', // Base ID
-			__('Civique Fundraiser', 'civique'), // Name
-			array( 'description' => __( 'This widget will show a fundraiser, and the current progress for the fundraiser.', 'civique' ), ) // Args
+			"civique_fundraiser", // Base ID
+			__("Civique Fundraiser", "civique"), // Name
+			[
+				"description" => __(
+					"This widget will show a fundraiser, and the current progress for the fundraiser.",
+					"civique",
+				),
+			], // Args
 		);
 	}
 
@@ -26,44 +32,59 @@ class Civique_Fundraiser_Widget extends WP_Widget {
 	 * @param array $args     Widget arguments.
 	 * @param array $instance Saved values from database.
 	 */
-	public function widget( $args, $instance ) {
-		$title = apply_filters( 'widget_title', $instance['title'] );
-		$goal = $instance['goal'];
-		$progress = $instance['progress'];
-		$pct = ($progress/$goal) * 100;
+	public function widget($args, $instance)
+	{
+		$title = apply_filters("widget_title", $instance["title"]);
+		$goal = $instance["goal"];
+		$progress = $instance["progress"];
+		$pct = ($progress / $goal) * 100;
 
 		$donate_link = false;
-		if(isset($instance['donate_link']) )
-		{
-			$donate_link = $instance['donate_link'];
+		if (isset($instance["donate_link"])) {
+			$donate_link = $instance["donate_link"];
 		}
 
 		$pct_str = "";
-		if( $pct > 5 )
-		{
-			$pct_str = sprintf("%s%%", number_format($pct, 0) );
+		if ($pct > 5) {
+			$pct_str = sprintf("%s%%", number_format($pct, 0));
 		}
 
-		echo $args['before_widget'];
-		if ( ! empty( $title ) )
-			echo $args['before_title'] . $title . $args['after_title'];
-		if( $progress > $goal )
-		{
-			echo sprintf('<div class="fundraiser"><div class="progress" style="width: 100%%;">%2$s</div></div>', $pct, $pct_str );
+		echo $args["before_widget"];
+		if (!empty($title)) {
+			echo $args["before_title"] . $title . $args["after_title"];
 		}
-		else
-		{
-			echo sprintf('<div class="fundraiser"><div class="progress" style="width: %1$f%%;">%2$s</div></div>', $pct, $pct_str );
+		if ($progress > $goal) {
+			echo sprintf(
+				'<div class="fundraiser">
+					<div class="progress" style="width: 100%%;">%2$s</div>
+				</div>',
+				$pct,
+				$pct_str,
+			);
+		} else {
+			echo sprintf(
+				'<div class="fundraiser">
+					<div class="progress" style="width: %1$f%%;">%2$s</div>
+				</div>',
+				$pct,
+				$pct_str,
+			);
 		}
-		
 
-		echo sprintf('<p>Currently <strong>$%s</strong> of $%s goal</p>', number_format($progress, 0), number_format($goal, 0) );
-		if($donate_link != false)
-		{
-			echo sprintf('<p><a href="%s" class="btn btn-donate">Donate to %s</a></p>', $donate_link, $title);
+		echo sprintf(
+			'<p>Currently <strong>$%s</strong> of $%s goal</p>',
+			number_format($progress, 0),
+			number_format($goal, 0),
+		);
+		if ($donate_link != false) {
+			echo sprintf(
+				'<p><a href="%s" class="btn btn-donate">Donate to %s</a></p>',
+				$donate_link,
+				$title,
+			);
 		}
 
-		echo $args['after_widget'];
+		echo $args["after_widget"];
 	}
 
 	/**
@@ -73,35 +94,56 @@ class Civique_Fundraiser_Widget extends WP_Widget {
 	 *
 	 * @param array $instance Previously saved values from database.
 	 */
-	public function form( $instance ) {
+	public function form($instance)
+	{
 		extract($instance);
 
-		if( !isset($title) )
+		if (!isset($title)) {
 			$title = "Fundraiser";
-		if( !isset($goal) )
+		}
+		if (!isset($goal)) {
 			$goal = 1000000;
-		if( !isset($progress) )
+		}
+		if (!isset($progress)) {
 			$progress = 10000;
-		if( !isset($donate_link) )
-			$donate_link = '/donate';
-		?>
+		}
+		if (!isset($donate_link)) {
+			$donate_link = "/donate";
+		}
+?>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Title:' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
+			<label for="<?php echo $this->get_field_id(
+							"title",
+						); ?>"><?php _e("Title:"); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id(
+											"title",
+										); ?>" name="<?php echo $this->get_field_name("title"); ?>" type="text" value="<?php echo esc_attr($title); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'goal' ); ?>"><?php _e( 'Goal:' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'goal' ); ?>" name="<?php echo $this->get_field_name( 'goal' ); ?>" type="text" value="<?php echo esc_attr( $goal ); ?>">
+			<label for="<?php echo $this->get_field_id(
+							"goal",
+						); ?>"><?php _e("Goal:"); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id(
+											"goal",
+										); ?>" name="<?php echo $this->get_field_name("goal"); ?>" type="text" value="<?php echo esc_attr($goal); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'progress' ); ?>"><?php _e( 'Progress:' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'progress' ); ?>" name="<?php echo $this->get_field_name( 'progress' ); ?>" type="text" value="<?php echo esc_attr( $progress ); ?>">
+			<label for="<?php echo $this->get_field_id(
+							"progress",
+						); ?>"><?php _e("Progress:"); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id(
+											"progress",
+										); ?>" name="<?php echo $this->get_field_name("progress"); ?>" type="text" value="<?php echo esc_attr($progress); ?>">
 		</p>
 		<p>
-		<label for="<?php echo $this->get_field_id( 'donate_link' ); ?>"><?php _e( 'Link to Donate:' ); ?></label> 
-		<input class="widefat" id="<?php echo $this->get_field_id( 'donate_link' ); ?>" name="<?php echo $this->get_field_name( 'donate_link' ); ?>" type="text" value="<?php echo esc_attr( $donate_link ); ?>">
+			<label for="<?php echo $this->get_field_id(
+							"donate_link",
+						); ?>"><?php _e("Link to Donate:"); ?></label>
+			<input class="widefat" id="<?php echo $this->get_field_id(
+											"donate_link",
+										); ?>" name="<?php echo $this->get_field_name("donate_link"); ?>" type="text" value="<?php echo esc_attr($donate_link); ?>">
 		</p>
-		<?php 
+<?php
 	}
 
 	/**
@@ -114,15 +156,28 @@ class Civique_Fundraiser_Widget extends WP_Widget {
 	 *
 	 * @return array Updated safe values to be saved.
 	 */
-	public function update( $new_instance, $old_instance ) {
-		$instance = array();
-		
-		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['goal'] = ( ! empty( $new_instance['goal'] ) ) ? strip_tags( $new_instance['goal'] ) : '';
-		$instance['progress'] = ( ! empty( $new_instance['progress'] ) ) ? strip_tags( $new_instance['progress'] ) : '';
-		$instance['donate_link'] = ( ! empty( $new_instance['donate_link'] ) ) ? strip_tags( $new_instance['donate_link'] ) : '';
+	public function update($new_instance, $old_instance)
+	{
+		$instance = [];
+
+		$instance["title"] = !empty($new_instance["title"])
+			? strip_tags($new_instance["title"])
+			: "";
+		$instance["goal"] = !empty($new_instance["goal"])
+			? strip_tags($new_instance["goal"])
+			: "";
+		$instance["progress"] = !empty($new_instance["progress"])
+			? strip_tags($new_instance["progress"])
+			: "";
+		$instance["donate_link"] = !empty($new_instance["donate_link"])
+			? strip_tags($new_instance["donate_link"])
+			: "";
 
 		return $instance;
 	}
 
+	public static function register()
+	{
+		register_widget(Civique_Fundraiser_Widget::class);
+	}
 }

@@ -4,48 +4,40 @@
 //	wordpress-specific styles
 //
 
-@import 'lhs-variables';
+@use "./theme-tools" as *;
+@use "./lhs-variables" as *;
+@use "sass:math";
 
-article
-{
-	@include clearfix; 
+article {
+	@include clearfix;
 
 	.blog &,
-	.archive &
-	{
+	.archive & {
 		border-bottom: solid 1px $border-color;
-		margin-bottom: $margin-bottom;	
+		margin-bottom: $margin-bottom;
 	}
-	&.sticky
-	{
-		.the-title:before
-		{
+	&.sticky {
+		.the-title:before {
 			display: inline-block;
 			color: $lhs-red;
 			-webkit-font-smoothing: antialiased;
-			font-family: 'dashicons';
+			font-family: "dashicons";
 			margin-right: 0.2em;
 			vertical-align: bottom;
 			content: "\f109";
 		}
 	}
-
 }
 
-#respond
-{
-	label
-	{
+#respond {
+	label {
 		font-weight: 700;
 	}
-	.comment-form-comment
-	{
-		label
-		{
+	.comment-form-comment {
+		label {
 			display: block;
 		}
-		textarea
-		{
+		textarea {
 			display: block;
 			width: 100%;
 			border-radius: 4px;
@@ -53,10 +45,8 @@ article
 			border: solid 1px $lhs-blue;
 		}
 	}
-	.form-submit
-	{
-		input[type=submit]
-		{
+	.form-submit {
+		input[type="submit"] {
 			margin: 0;
 			padding: 0;
 			display: inline-block;
@@ -68,98 +58,79 @@ article
 
 			@include transition(background 200ms ease-in-out);
 
-			&:hover
-			{
-				background-color: lighten($lhs-blue, 10%);
+			&:hover {
+				background-color: lighten-color($lhs-blue, 10%);
 			}
-			&:active
-			{
+			&:active {
 				margin: 2px 0 -2px;
 			}
 		}
 	}
 }
 
-.comments-list
-{
+.comments-list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	margin-bottom: $margin-bottom;
 
-	.comment #respond
-	{
+	.comment #respond {
 		margin-top: $margin-bottom;
 	}
 
-	li
-	{
+	li {
 		margin-left: 75px;
 		padding: 15px;
 
-		&.parent .children
-		{
+		&.parent .children {
 			margin-top: $margin-bottom;
 		}
 
-		&.bypostauthor
-		{
+		&.bypostauthor {
 			border: solid 1px $lhs-blue;
-			background: lighten($lhs-blue, 40%) !important;
-			&.alt
-			{
-				background: lighten($lhs-blue, 50%) !important;
+			background: lighten-color($lhs-blue, 40%) !important;
+			&.alt {
+				background: lighten-color($lhs-blue, 50%) !important;
 			}
 		}
 
-		.comment-content p
-		{
-			margin: $margin-bottom/2 0;
+		.comment-content p {
+			margin: math.div($margin-bottom, 2) 0;
 		}
 
-		ol.children
-		{
+		ol.children {
 			list-style: none;
 			margin: 0;
 			padding: 0;
-			.odd
-			{
+			.odd {
 				background-color: #eee;
 			}
-			.even
-			{
+			.even {
 				background-color: #fff;
 			}
 		}
 
-		&.thread-odd, &.thread-alt
-		{
+		&.thread-odd,
+		&.thread-alt {
 			background-color: #efefef;
 		}
-		&.thread-even
-		{
+		&.thread-even {
 			background-color: #fff;
 		}
 
-		.comment-meta
-		{
-			margin-bottom: $margin-bottom/2;
+		.comment-meta {
+			margin-bottom: math.div($margin-bottom, 2);
 		}
 
-		.reply a:before
-		{content: "\f101";
-			font-family: 'dashicons';
+		.reply a:before {
+			content: "\f101";
+			font-family: "dashicons";
 			font-size: 18px;
 			vertical-align: middle;
 			display: inline-block;
 		}
 
-
-
-
-
-		.avatar
-		{
+		.avatar {
 			float: left;
 			margin-left: -80px;
 			border-radius: 50%;
@@ -167,137 +138,114 @@ article
 	}
 }
 
-.gallery
-{
+.gallery {
 	@include clearfix;
-	&.gallery-columns-4
-	{
-		.gallery-item:nth-child(4n+1)
-		{
+	&.gallery-columns-4 {
+		.gallery-item:nth-child(4n + 1) {
 			clear: left;
 		}
-		.gallery-item
-		{
+		.gallery-item {
 			width: 25%;
 			float: left;
 			text-align: center;
 			margin-bottom: $margin-bottom;
 
-			.gallery-icon
-			{
-				margin-bottom: .5em;
+			.gallery-icon {
+				margin-bottom: 0.5em;
 			}
-
 		}
 	}
-	&.gallery-columns-3
-	{
-		.gallery-item:nth-child(3n+1)
-		{
+	&.gallery-columns-3 {
+		.gallery-item:nth-child(3n + 1) {
 			clear: left;
 		}
-		.gallery-item
-		{
-			width: (100/3) * 1%;
+		.gallery-item {
+			width: math.div(100, 3) * 1%;
 			float: left;
 			text-align: center;
 			margin-bottom: $margin-bottom;
 
-			.gallery-icon
-			{
+			.gallery-icon {
 				margin-bottom: 0.5em;
 			}
 		}
 	}
 }
 
-ul.sidebar
-{
+ul.sidebar {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	margin-bottom: $margin-bottom;
 
-	.widget
-	{
+	.widget {
 		margin-bottom: $margin-bottom;
 		border-bottom: solid 1px $border-color;
 	}
 
-	.widget_search
-	{
-
+	.widget_search {
 	}
-	.widget_recent_entries
-	{
-		ul
-		{
+	.widget_recent_entries {
+		ul {
 			list-style: none;
 			margin: 0;
 			padding: 0;
 			margin-bottom: $margin-bottom;
-			li
-			{
-				a {display: block;}
-				span {display: block; text-transform: uppercase; color: $text-muted;}
+			li {
+				a {
+					display: block;
+				}
+				span {
+					display: block;
+					text-transform: uppercase;
+					color: $text-muted;
+				}
 			}
 		}
 	}
 }
 
-.search-form
-{
+.search-form {
 	margin-bottom: $margin-bottom;
 }
 
-.post-meta
-{
-	li:before
-	{
+.post-meta {
+	li:before {
 		display: inline-block;
 		color: #ccc;
 		-webkit-font-smoothing: antialiased;
-		font: normal 1.3em/1 'dashicons';
+		font: normal 1.3em/1 "dashicons";
 		margin-right: 0.2em;
 		vertical-align: middle;
 	}
 
-	.icon-author:before
-	{
+	.icon-author:before {
 		content: "\f110";
 	}
 
-	.icon-time:before
-	{
+	.icon-time:before {
 		content: "\f469";
 	}
 
-	.icon-comments:before
-	{
+	.icon-comments:before {
 		content: "\f125";
 	}
-	.icon-edit:before
-	{
+	.icon-edit:before {
 		content: "\f464";
 	}
-	.icon-folder:before
-	{
+	.icon-folder:before {
 		content: "\f318";
 	}
-	.icon-tag:before
-	{
+	.icon-tag:before {
 		content: "\f323";
 	}
-
 }
 
-.next-prev
-{
+.next-prev {
 	@include clearfix;
 	margin-bottom: $margin-bottom;
 
-	>div > em
-	{
+	> div > em {
 		text-align: center;
 		padding: 0.8em;
 		display: block;
@@ -305,8 +253,7 @@ ul.sidebar
 		color: #999;
 	}
 
-	a
-	{
+	a {
 		display: block;
 		text-align: center;
 		text-decoration: none;
@@ -316,24 +263,19 @@ ul.sidebar
 	}
 }
 
-.pagination
-{
+.pagination {
 	margin-bottom: $margin-bottom;
 
-	* a:hover
-	{
-		background: lighten($lhs-blue, 10%);
+	* a:hover {
+		background: lighten-color($lhs-blue, 10%);
 	}
 
-
-	span.meta
-	{
+	span.meta {
 		display: inline-block;
 		padding: 0.5em;
 		font-weight: 700;
 	}
-	span.inactive a
-	{
+	span.inactive a {
 		display: inline-block;
 		padding: 0.5em;
 		width: 2em;
@@ -341,8 +283,7 @@ ul.sidebar
 		background-color: $lhs-blue;
 		color: #fff;
 	}
-	span.active
-	{
+	span.active {
 		display: inline-block;
 		padding: 0.5em;
 		width: 2em;
@@ -354,7 +295,6 @@ img {
 	max-width: 100%;
 
 	&.size-full {
-
 	}
 	&.aligncenter,
 	&.alignnone {
@@ -406,5 +346,4 @@ img {
 		padding: 5px;
 		text-align: left;
 	}
-
 }

@@ -1,0 +1,55 @@
+@media screen and (min-width: 641px) {
+	header.main-header section.brand h1 a {
+		background-image: var(
+			--civique-header-logo-image,
+			url("./img/brand_logo.png")
+		);
+		background-position: left 50%;
+		background-repeat: no-repeat;
+		padding-left: calc(var(--civique-header-logo-width, 95px) + 20px);
+	}
+
+	header.main-header {
+		background-color: var(--civique-header-background-color, #2f4784);
+		border-bottom: 1px solid var(--civique-header-background-dark-20, #141f39);
+	}
+
+	.rgba header.main-header {
+		background-color: var(
+			--civique-header-background-transparent-07,
+			rgba(47, 71, 132, 0.93)
+		);
+	}
+
+	header.main-header nav.menu > ul > li > .sub-menu {
+		border-bottom: 3px solid var(--civique-header-background-dark-10, #22335e);
+		border-left: 1px solid var(--civique-header-background-dark-10, #22335e);
+		border-right: 1px solid var(--civique-header-background-dark-10, #22335e);
+	}
+
+	.no-js nav.menu > ul > li > a:hover,
+	.js nav.menu > ul > li > a.hover {
+		color: var(--civique-header-background-color, #2f4784);
+	}
+
+	nav.menu > ul > li.donate {
+		background-color: var(--civique-donate-button-color, #d0b87b);
+	}
+
+	header.main-header nav.search .search-li .search-field:hover {
+		color: #fff;
+		background-color: var(--civique-header-background-light-10, #3c5baa);
+	}
+
+	header.main-header nav.search .search-li .search-field:focus,
+	header.main-header nav.search .search-li .search-field:focus:hover {
+		color: #000;
+		border-bottom-color: var(--civique-header-background-color, #2f4784);
+	}
+}
+
+@media screen and (min-width: 641px) and (max-width: 1300px) {
+	header.main-header section.brand h1 a {
+		padding-left: var(--civique-header-logo-width, 95px);
+	}
+}

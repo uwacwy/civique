@@ -4,18 +4,28 @@
 //	type settings including basic tags
 //
 
-@import 'lhs-variables';
-@import 'bourbon/bourbon';
+@use "./theme-tools" as *;
+@use "./lhs-variables" as *;
 
-h1, h2, h3, h4, h5, h6, p, ul, ol
-{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
 	line-height: 1;
 }
 
-h1, h2, h3, h4, h5, h6
-{
-	small
-	{
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	small {
 		color: $text-muted;
 		font-size: 0.8em;
 	}
@@ -23,119 +33,115 @@ h1, h2, h3, h4, h5, h6
 
 $desktop-font-size: 1em;
 
-dl
-{
-	dt {font-weight: 700;}
-	dd {margin-left: 3em;}
+dl {
+	dt {
+		font-weight: 700;
+	}
+	dd {
+		margin-left: 3em;
+	}
 }
-blockquote
-{
+blockquote {
 	padding: 0.5em 1em;
 	margin-bottom: $margin-bottom;
 	background: $shaded;
 	border-left: 3px solid $border-color;
-	p
-	{
-		margin-top: .5em;
-		margin-bottom: .5em;
-		cite
-		{
+	p {
+		margin-top: 0.5em;
+		margin-bottom: 0.5em;
+		cite {
 			display: block;
 			text-align: right;
 			font-style: italic;
 		}
 	}
 }
-ul, ol
-{
+ul,
+ol {
 	padding-left: golden-ratio($desktop-font-size, 1);
 
-	ul, ol {margin-bottom: 0;}
+	ul,
+	ol {
+		margin-bottom: 0;
+	}
 }
 
-ol
-{
+ol {
 	list-style: decimal;
 }
 
-ul
-{
+ul {
 	list-style: disc;
 }
 
-h3, h2, h1
-{
+h3,
+h2,
+h1 {
 	font-weight: $font-weight-light;
 }
 
-p, address, ul, ol, dl {
+p,
+address,
+ul,
+ol,
+dl {
 	font-size: $desktop-font-size;
 	line-height: 1.5em;
 	margin-bottom: $margin-bottom;
 }
 
-strong
-{
+strong {
 	font-weight: $font-weight-bold;
 }
 
-em
-{
+em {
 	font-style: italic;
 }
 
-code
-{
+code {
 	display: inline;
 	background: #eee;
-	font-family: 'Consolas', monospace;
+	font-family: "Consolas", monospace;
 	padding: 4px;
 }
 
-pre
-{
+pre {
 	display: block;
 	padding: $desktop-font-size;
 	margin-bottom: golden-ratio($desktop-font-size, 1);
-	font-family: 'Consolas', monospace;
+	font-family: "Consolas", monospace;
 	background: #eee;
 }
 
-h6
-{
+h6 {
 	font-weight: $font-weight-normal;
 	font-size: $desktop-font-size;
 	font-style: italic;
 	line-height: golden-ratio($desktop-font-size, 1);
 }
 
-h5
-{
+h5 {
 	font-size: $desktop-font-size;
 	line-height: 1.5;
 	font-weight: bold;
 }
 
-h4
-{
+h4 {
 	font-size: golden-ratio($desktop-font-size, 1) * 0.75;
 	margin-bottom: 0.5em;
 }
 
-h3
-{
+h3 {
 	font-size: golden-ratio($desktop-font-size, 2) * 0.75;
 	margin-bottom: 0.4em;
 }
 
-h2
-{
+h2 {
 	font-size: golden-ratio($desktop-font-size, 3) * 0.75;
 	margin-bottom: 0.3em;
 }
 
-h1
-{
+h1 {
 	font-size: golden-ratio($desktop-font-size, 4) * 0.75;
 	margin-bottom: 0.2em;
 }

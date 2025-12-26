@@ -1,0 +1,59 @@
+{
+	"name": "civique",
+	"version": "1.0.0",
+	"license": "MIT",
+	"repository": "https://github.com/uwacwy/civique",
+	"description": "Civique is a modern, accessible, and easy-to-use WordPress theme designed specifically for non-profit organizations, helping them create impactful online presences with ease.",
+	"author": "Brad Kovach <brad.kovach@unitedwayalbanycounty.org>",
+	"tags": [
+		"wordpress",
+		"theme",
+		"non-profit"
+	],
+	"type": "module",
+	"scripts": {
+		"format": "prettier --write \"**/*.{js,jsx,ts,tsx,scss,css,php,json,md}\"",
+		"format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,scss,css,php,json,md}\"",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"build": "node esbuild.release.mjs",
+		"watch": "node esbuild.dev.mjs"
+	},
+	"devDependencies": {
+		"@eslint/eslintrc": "^3.0.2",
+		"@eslint/js": "^8.57.1",
+		"@prettier/plugin-php": "^0.22.3",
+		"@types/archiver": "^7.0.0",
+		"@types/gulp": "^4.0.18",
+		"@types/modernizr": "^3.5.6",
+		"@typescript-eslint/eslint-plugin": "^6.21.0",
+		"@typescript-eslint/parser": "^6.21.0",
+		"@wordpress/eslint-plugin": "^19.0.0",
+		"archiver": "^6.0.1",
+		"autoprefixer": "^10.4.23",
+		"chalk": "^5.6.2",
+		"dedent": "^1.7.1",
+		"esbuild": "^0.24.0",
+		"esbuild-sass-plugin": "^3.3.1",
+		"eslint": "^8.57.1",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-jest": "^27.9.0",
+		"eslint-plugin-jsx-a11y": "^6.7.1",
+		"eslint-plugin-playwright": "^0.19.0",
+		"eslint-plugin-prettier": "^5.1.3",
+		"eslint-plugin-react": "^7.37.2",
+		"eslint-plugin-react-hooks": "^4.6.2",
+		"globals": "^15.3.0",
+		"gulp": "^5.0.1",
+		"headroom.js": "^0.12.0",
+		"modernizr": "^3.13.1",
+		"postcss": "^8.5.6",
+		"prettier": "^3.2.5",
+		"sass": "^1.80.6",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.6.3"
+	},
+	"dependencies": {
+		"bootstrap": "^3.4.1"
+	}
+}

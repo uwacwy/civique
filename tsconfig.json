@@ -1,0 +1,17 @@
+{
+	"compilerOptions": {
+		"target": "ES2018",
+		"module": "ESNext",
+		"moduleResolution": "Node",
+		"moduleDetection": "force",
+		"strict": true,
+		"rootDir": "civique",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"esModuleInterop": true,
+		"forceConsistentCasingInFileNames": true,
+		"skipLibCheck": true,
+		"lib": ["DOM", "DOM.Iterable", "ES2018"]
+	},
+	"include": ["civique/**/*.ts"]
+}

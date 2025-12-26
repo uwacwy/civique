@@ -5,15 +5,15 @@
 		<div class="row">
 			<div class="col-md-8">
 				<h2>
-					<small>Search Results</small><br>
+					<small><?php echo __("Search Results"); ?></small><br>
 					<?php the_search_query(); ?>
 				</h2>
 				<?php get_search_form(); ?>
-				<?php get_template_part('loop'); ?>
+				<?php get_template_part("loop"); ?>
 			</div>
 			<div class="col-md-4">
 				<ul class="sidebar">
-					<?php dynamic_sidebar('right-sidebar'); ?>
+					<?php dynamic_sidebar("right-sidebar"); ?>
 				</ul>
 			</div>
 		</div>

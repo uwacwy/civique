@@ -1,0 +1,50 @@
+name: civique
+services:
+   db:
+      image: mysql:8.0
+      container_name: civique-db
+      restart: unless-stopped
+      environment:
+         MYSQL_DATABASE: wordpress
+         MYSQL_USER: wordpress
+         MYSQL_PASSWORD: wordpress
+         MYSQL_ROOT_PASSWORD: rootpassword
+      volumes:
+         - db-data:/var/lib/mysql
+
+   wordpress:
+      image: wordpress:6
+      container_name: civique-wordpress
+      depends_on:
+         - db
+      restart: unless-stopped
+      environment:
+         UID: "1000"
+         GID: "1000"
+         WORDPRESS_DB_HOST: db:3306
+         WORDPRESS_DB_USER: wordpress
+         WORDPRESS_DB_PASSWORD: wordpress
+         WORDPRESS_DB_NAME: wordpress
+         WORDPRESS_DEBUG: "1"
+         WORDPRESS_CONFIG_EXTRA: |
+            // Use direct FS method for file system writes
+            define('FS_METHOD', 'direct');
+
+            // Don't print errors on the page
+            ini_set('display_errors', 0);
+            define('WP_DEBUG_DISPLAY', false);
+
+            // use debug scripts
+            define('SCRIPT_DEBUG', true);
+      user: "1000:1000"
+      ports:
+         - "8080:80"
+      volumes:
+         - wordpress-data:/var/www/html
+         - ${PWD}/wp/wp-content/uploads:/var/www/html/wp-content/uploads
+         - ${PWD}/wp/wp-content/plugins:/var/www/html/wp-content/plugins
+         - ${PWD}/wp/wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins
+         - ${PWD}/civique:/var/www/html/wp-content/themes/civique
+volumes:
+   db-data:
+   wordpress-data:

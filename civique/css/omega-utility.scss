@@ -4,43 +4,38 @@
 //	utility classes that make repetative styling a breeze
 //
 
-@import 'lhs-variables';
+@use "./theme-tools" as *;
+@use "./lhs-variables" as *;
 
-ul, ol
-{
-	&.inline
-	{
+ul,
+ol {
+	&.inline {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		margin-bottom: $margin-bottom;
-		li
-		{
+		li {
 			display: inline;
 			margin-right: 1em;
 		}
 	}
-	&.minimize
-	{
+	&.minimize {
 		margin: 0;
 		padding: 0;
 		margin-left: 20px;
 		margin-bottom: $margin-bottom;
 	}
 
-	&.social
-	{
+	&.social {
 		display: block;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 		margin-bottom: $margin-bottom;
-		li
-		{
+		li {
 			display: inline;
 			margin-right: 10px;
-			*
-			{
+			* {
 				display: inline-block;
 				vertical-align: bottom;
 			}
@@ -48,24 +43,19 @@ ul, ol
 	}
 }
 
-.text-right
-{
+.text-right {
 	text-align: right;
 }
-.text-left
-{
+.text-left {
 	text-align: left;
 }
-.text-center
-{
+.text-center {
 	text-align: center;
 }
-.text-justify
-{
+.text-justify {
 	text-align: justify;
 }
-.text-small
-{
+.text-small {
 	font-size: golden-ratio(1em, -1);
 	line-height: golden-ratio(1.5em, 1);
 }

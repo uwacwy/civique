@@ -5,7 +5,7 @@
 	defines variables to be used project-wide
 */
 
-@import 'bourbon/bourbon';
+@use "./theme-tools" as *;
 
 $omega-compiler-version: "1.0";
 $font-family: "Open Sans", "Helvetica", "Arial", sans-serif;
@@ -24,7 +24,7 @@ $font-weight-semibold: 600;
 $font-weight-bold: 700;
 
 //
-$menu-background-color: darken($lhs-blue, 10%);
+$menu-background-color: darken-color($lhs-blue, 10%);
 
 $header-height: 100px;
 

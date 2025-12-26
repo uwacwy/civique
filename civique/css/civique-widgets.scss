@@ -4,26 +4,23 @@
 //	styling for Civique widgets
 //
 
-@import 'lhs-variables';
+@use "./theme-tools" as *;
+@use "./lhs-variables" as *;
 
-.widget_civique_fundraiser
-{
-	.fundraiser
-	{
+.civique-progress-bar {
+	display: block;
+	width: 100%;
+	height: 2em;
+	margin-bottom: $margin-bottom;
+	background-color: var(--civique-surface-void, #dfd);
+	height: 2em;
+	.civique-progress-bar__progress {
 		display: block;
-		width: 100%;
 		height: 2em;
-		margin-bottom: $margin-bottom;
-		background-color: #dfd;
-		.progress
-		{
-			display: block;
-			height: 2em;
-			line-height: 2em;
-			text-align: center;
-			color: #fff;
-			background-color: #009900;
-			// never define width here; the widget has an inline style
-		}
+		line-height: 2em;
+		text-align: center;
+		color: #fff;
+		background-color: var(--civique-success, #009900);
+		// never define width here; the widget has an inline style
 	}
 }

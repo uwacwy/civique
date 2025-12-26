@@ -1,0 +1,52 @@
+@use "sass:color";
+@use "sass:math";
+
+$golden-ratio-constant: 1.618;
+
+@mixin clearfix {
+	&::after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+@mixin transition($values...) {
+	transition: $values;
+}
+
+@mixin transform($values...) {
+	transform: $values;
+}
+
+@function adjust-lightness($color-value, $lightness) {
+	@return color.adjust($color-value, $lightness: $lightness);
+}
+
+@function lighten-color($color-value, $amount) {
+	@return adjust-lightness($color-value, $amount);
+}
+
+@function darken-color($color-value, $amount) {
+	@return adjust-lightness($color-value, -$amount);
+}
+
+@function modular-scale($value, $steps, $ratio: $golden-ratio-constant) {
+	@if $steps == 0 {
+		@return $value;
+	}
+
+	@return $value * math.pow($ratio, $steps);
+}
+
+@function golden-ratio($value, $steps) {
+	@return modular-scale($value, $steps, $golden-ratio-constant);
+}
+
+@function transparentize-color($color-value, $amount) {
+	@return color.adjust($color-value, $alpha: -$amount);
+}
+
+@function divide($value, $divisor) {
+	@return math.div($value, $divisor);
+}
