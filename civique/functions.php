@@ -124,11 +124,15 @@ endif;
 if (!function_exists("civique_enqueue_js_css")):
 	function civique_enqueue_js_css()
 	{
-		wp_enqueue_style("civique", get_template_directory_uri() . "/civique.css");
+		// If WP_DEBUG is defined and true, use the non-minified versions
+		if (defined('WP_DEBUG') && WP_DEBUG) {
+			wp_enqueue_style('civique', get_template_directory_uri() . '/civique.css', [], filemtime(get_template_directory() . '/civique.css'));
+			wp_enqueue_script('civique', get_template_directory_uri() . '/civique.js', [], filemtime(get_template_directory() . '/civique.js'), true);
+		} else {
+			wp_enqueue_style('civique', get_template_directory_uri() . '/civique.min.css', [], filemtime(get_template_directory() . '/civique.min.css'));
+			wp_enqueue_script('civique', get_template_directory_uri() . '/civique.min.js', [], filemtime(get_template_directory() . '/civique.min.js'), true);
+		}
 		wp_enqueue_style("dashicons");
-		wp_enqueue_script("civique", get_template_directory_uri() . "/civique.js", [
-			"jquery",
-		]);
 		if (is_singular()) {
 			wp_enqueue_script("comment-reply");
 		}
