@@ -6,10 +6,13 @@ on:
          - "v*"
    workflow_dispatch:
 
-permissions: write-all
 jobs:
    package:
       runs-on: ubuntu-latest
+      env:
+         NODE_ENV: production
+         TERM: xterm-256color
+         FORCE_COLOR: 1
       steps:
          - name: Check out repository
            uses: actions/checkout@v4
@@ -20,6 +23,18 @@ jobs:
               VERSION=$(node -p "require('./package.json').version")
               echo "Package version: $VERSION"
               echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+              IS_DRAFT="false"
+               if [[ "$VERSION" == *"-"* ]]; then
+                  IS_DRAFT="true"
+               fi
+              echo "is_draft=$IS_DRAFT" >> $GITHUB_OUTPUT
+
+              IS_PRERELEASE="false"
+               if [[ "$VERSION" == *"alpha"* || "$VERSION" == *"beta"* || "$VERSION" == *"rc"* ]]; then
+                  IS_PRERELEASE="true"
+               fi
+              echo "is_prerelease=$IS_PRERELEASE" >> $GITHUB_OUTPUT
 
          - name: Set up Node.js
            uses: actions/setup-node@v4
@@ -32,6 +47,8 @@ jobs:
 
          - name: Build distributable zip
            run: |
+              # enable colors in ci
+              export
               npm run build
          - name: Print build outputs
            if: always()
@@ -57,10 +74,10 @@ jobs:
            env:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            with:
-              tag_name: ${{ github.ref_name }}
+              tag_name: ${{ github.ref }}
               release_name: Civique ${{ steps.get_version.outputs.version }}
-              draft: false
-              prerelease: false
+              draft: ${{ steps.get_version.outputs.is_draft }}
+              prerelease: ${{ steps.get_version.outputs.is_prerelease }}
 
          - name: Upload Release Asset
            uses: actions/upload-release-asset@v1
