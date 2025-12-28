@@ -28,12 +28,16 @@ jobs:
          - name: Build distributable zip
            run: |
               npm run build
-
-              # List the contents of the dist directory for debugging purposes
+         - name: Print build outputs
+           if: always()
+           run: |
+              echo "Contents of dist/:"
               ls -la dist
 
+              echo "Contents of dist/civique/:"
               ls -la dist/civique
 
+              echo "Contents of dist/civique-*.zip:"
               unzip -l dist/civique-*.zip
 
          - name: Upload artifact
