@@ -6,11 +6,9 @@ on:
          - "v*"
    workflow_dispatch:
 
-permissions:
-   contents: write
-
 jobs:
    package:
+      permissions: write-all
       runs-on: ubuntu-latest
       steps:
          - name: Check out repository
@@ -70,6 +68,6 @@ jobs:
               GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            with:
               upload_url: ${{ steps.create_release.outputs.upload_url }}
-              asset_path: ./dist/civique-*.zip
+              asset_path: ./dist/civique-${{ steps.get_version.outputs.version }}.zip
               asset_name: civique-${{ steps.get_version.outputs.version }}.zip
               asset_content_type: application/zip
