@@ -69,11 +69,18 @@ export const formatPath = (filePath, cwd = process.cwd()) => {
 	const cwdAbs = resolveAbsPosix(cwd);
 	const filePathAbs = resolveAbsPosix(filePath);
 
-	const stats = cbfs.statSync(filePathAbs);
-	const isDirectory = stats.isDirectory();
-	const isFile = stats.isFile();
-	// eslint-disable-next-line no-bitwise
-	const isExecutable = isFile && (stats.mode & 0o111) !== 0;
+	const exists = cbfs.existsSync(filePathAbs);
+	let isDirectory = false;
+	let isFile = false;
+	let isExecutable = false;
+
+	if (exists) {
+		const stats = cbfs.statSync(filePathAbs);
+		isDirectory = stats.isDirectory();
+		isFile = stats.isFile();
+		// eslint-disable-next-line no-bitwise
+		isExecutable = isFile && (stats.mode & 0o111) !== 0;
+	}
 
 	/** @type {string[]} */
 	const chunks = [chalk.dim.white(".")];
