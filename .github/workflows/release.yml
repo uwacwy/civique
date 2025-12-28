@@ -47,8 +47,6 @@ jobs:
 
          - name: Build distributable zip
            run: |
-              # enable colors in ci
-              export
               npm run build
          - name: Print build outputs
            if: always()
