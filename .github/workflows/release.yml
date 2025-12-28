@@ -6,9 +6,9 @@ on:
          - "v*"
    workflow_dispatch:
 
+permissions: write-all
 jobs:
    package:
-      permissions: write-all
       runs-on: ubuntu-latest
       steps:
          - name: Check out repository
