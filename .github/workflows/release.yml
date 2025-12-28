@@ -44,8 +44,8 @@ jobs:
               echo "Contents of dist/civique/:"
               ls -la dist/civique
 
-              echo "Contents of dist/civique-$VERSION.zip:"
-              unzip -l dist/civique-$VERSION.zip
+              echo "Contents of dist/civique-${{ steps.get_version.outputs.version }}.zip:"
+              unzip -l dist/civique-${{ steps.get_version.outputs.version }}.zip
 
          - name: Upload artifact
            uses: actions/upload-artifact@v4
