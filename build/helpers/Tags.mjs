@@ -7,17 +7,15 @@ const formatters = [
 	chalk.blue,
 	chalk.magenta,
 	chalk.cyan,
-	chalk.white,
 
 	// black on <color>
 	// chalk.bgRed.black,
 
-	chalk.greenBright.black,
-	chalk.yellowBright.black,
-	chalk.blueBright.black,
-	chalk.magentaBright.black,
-	chalk.cyanBright.black,
-	chalk.whiteBright.black,
+	chalk.green.bold,
+	chalk.yellow.bold,
+	chalk.blue.bold,
+	chalk.magenta.bold,
+	chalk.cyan.bold,
 ];
 
 const tags = new Map();
@@ -35,7 +33,7 @@ export const getFormatterForTag = (tag) => {
  * @param {string} tag    tag to format and prepend
  * @param {number} idx    current index
  * @param {number} length total length
- * @return
+ * @return {string} formatted progress tag
  */
 export const progressTag = (tag, idx = NaN, length = NaN) => {
 	const formatTag = getFormatterForTag(tag);

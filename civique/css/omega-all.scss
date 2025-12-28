@@ -5,7 +5,11 @@
 //
 
 @use "./theme-tools" as *;
-@use "./lhs-variables" as *;
+@use "./civique-variables" as *;
+
+* {
+	box-sizing: border-box;
+}
 
 body {
 	font-family: $font-family;
@@ -32,6 +36,15 @@ table {
 	}
 }
 
+a {
+	color: $civique-blue;
+	text-decoration: none;
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+}
+
 .stripe {
 	@include clearfix;
 	&.padded {
@@ -52,6 +65,17 @@ table {
 
 .position-relative {
 	position: relative;
+}
+
+hr {
+	margin-top: golden-ratio(1em, 1);
+	margin-bottom: golden-ratio(1em, 1);
+	border: 0;
+	border-top: 1px solid var(--civique-border-color, #eee);
+}
+
+.w-100 {
+	width: 100%;
 }
 
 @media screen and (min-width: 481px) {

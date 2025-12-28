@@ -13,6 +13,14 @@ const deviceSupportsTouch = () => {
 	);
 };
 
+const deviceSupportsRgba = () => {
+	const el = document.createElement("div");
+	el.style.cssText = "background-color:rgba(0,0,0,0.5)";
+	return !!el.style.backgroundColor.match(
+		/^rgba\((\s*\d+\s*,){3}\s*(0?\.?\d+|1(\.0)?)\s*\)$/
+	);
+};
+
 const $ = document.querySelectorAll.bind(document);
 
 const toggleClass = (el: Element, className: string) => {
@@ -26,10 +34,19 @@ const toggleClass = (el: Element, className: string) => {
 // on document ready
 document.addEventListener("DOMContentLoaded", () => {
 	document.documentElement.classList.remove("no-js");
-	document.documentElement.classList.add("js");
-	document.documentElement.classList.add(
-		deviceSupportsTouch() ? "touch" : "no-touch"
-	);
+
+	const tests = {
+		rgba: deviceSupportsRgba,
+		touch: deviceSupportsTouch,
+	};
+
+	for (const [name, test] of Object.entries(tests)) {
+		if (test()) {
+			document.documentElement.classList.add(name);
+		} else {
+			document.documentElement.classList.add(`no-${name}`);
+		}
+	}
 
 	// remove heights on img;
 	$("img").forEach((img) => {

@@ -41,6 +41,7 @@ services:
          - "8080:80"
       volumes:
          - wordpress-data:/var/www/html
+         - ${PWD}/wp/wp-config.php:/var/www/html/wp-config.php
          - ${PWD}/wp/wp-content/uploads:/var/www/html/wp-content/uploads
          - ${PWD}/wp/wp-content/plugins:/var/www/html/wp-content/plugins
          - ${PWD}/wp/wp-content/mu-plugins:/var/www/html/wp-content/mu-plugins

@@ -1,5 +1,6 @@
 // @ts-check
 import chalk from "chalk";
+import cbfs from "node:fs";
 import path from "node:path";
 
 /**
@@ -68,6 +69,12 @@ export const formatPath = (filePath, cwd = process.cwd()) => {
 	const cwdAbs = resolveAbsPosix(cwd);
 	const filePathAbs = resolveAbsPosix(filePath);
 
+	const stats = cbfs.statSync(filePathAbs);
+	const isDirectory = stats.isDirectory();
+	const isFile = stats.isFile();
+	// eslint-disable-next-line no-bitwise
+	const isExecutable = isFile && (stats.mode & 0o111) !== 0;
+
 	/** @type {string[]} */
 	const chunks = [chalk.dim.white(".")];
 
@@ -92,7 +99,11 @@ export const formatPath = (filePath, cwd = process.cwd()) => {
 
 				// if last, use basename formatting
 				if (idx === all.length - 1) {
-					return formatBasename(seg);
+					if (isDirectory) {
+						return chalk.green(seg) + chalk.white(path.posix.sep);
+					}
+					const fmted = formatBasename(seg);
+					return isExecutable ? chalk.bold.green(fmted) : fmted;
 				}
 
 				return seg;
@@ -100,4 +111,15 @@ export const formatPath = (filePath, cwd = process.cwd()) => {
 	);
 
 	return chunks.join(chalk.bold.dim(path.posix.sep));
+};
+
+/**
+ * Print a path relative to cwd, formatted.
+ * @param {string} filePath a path
+ * @return {string} the path, shown relative to cwd and formatted
+ */
+export const prettyCwdRelPath = (filePath) => {
+	const cwd = process.cwd();
+	const rel = path.relative(cwd, filePath);
+	return formatPath(rel, cwd);
 };

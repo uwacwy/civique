@@ -17,15 +17,7 @@ $last_edited_by_sprint = sprintf(
 	'<cite>' . esc_html($modified_author) . '</cite>'
 );
 
-
-
 ?><ul class="inline post-meta">
-	<li>
-		Created: <a href="<?php the_permalink(); ?>"><?php echo $created_date . " " . $created_time; ?></a>
-	</li>
-	<li>
-		Modified: <a href="<?php the_permalink(); ?>"><?php echo $modified_date . " " . $modified_time; ?></a>
-	</li>
 
 	<li class="icon-author"><?php if (is_page()) : ?>last edited <?php endif; ?>by <cite><?php the_author_posts_link(); ?></cite></li>
 

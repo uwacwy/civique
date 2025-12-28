@@ -22,16 +22,24 @@
 					</div>
 					<div class="col-md-4 hide-sm">
 						<div class="height-100 position-relative">
-							<div class="panel bottom">
+							<div class="w-100 panel bottom">
 								<h3>Welcome</h3>
 								<ul class="minimize">
-									<?php wp_nav_menu(array('theme_location' => 'front-page-quick-menu', 'container' => false, 'items_wrap' => '%3$s')); ?>
+									<?php wp_nav_menu(array(
+										'theme_location' => 'front-page-quick-menu',
+										'container' => false,
+										'items_wrap' => '%3$s'
+									)); ?>
 								</ul>
-								<?php if (get_theme_mod('social_twitter') || get_theme_mod('social_facebook')) : ?>
+								<?php
+
+								$twitter = civique_get_theme_mod('social', 'twitter');
+								$facebook = civique_get_theme_mod('social', 'facebook');
+								if ($twitter || $facebook) : ?>
 									<ul class="social">
-										<?php if (($twitter = get_theme_mod('social_twitter', null)) && $twitter != null)
+										<?php if ($twitter != null)
 											echo sprintf('<li><a href="https://twitter.com/%1$s" class="twitter-follow-button" data-show-count="false">Follow @%1$s</a></li>', $twitter); ?>
-										<?php if (($facebook = get_theme_mod('social_facebook', null)) && $facebook != null)
+										<?php if ($facebook != null)
 											echo sprintf('<li><div class="fb-like" data-href="%s" data-layout="button_count" data-action="like" data-show-faces="false" data-share="false"></div></li>', $facebook); ?>
 									</ul>
 								<?php endif; ?>

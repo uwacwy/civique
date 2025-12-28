@@ -5,7 +5,7 @@
 //
 
 @use "./theme-tools" as *;
-@use "./lhs-variables" as *;
+@use "./civique-variables" as *;
 
 ul,
 ol {
@@ -32,13 +32,18 @@ ol {
 		margin: 0;
 		padding: 0;
 		margin-bottom: $margin-bottom;
-		li {
+		.social__item {
 			display: inline;
-			margin-right: 10px;
 			* {
 				display: inline-block;
 				vertical-align: bottom;
 			}
+		}
+		> .social__item + .social__item {
+			margin-left: 0.5em;
+		}
+		.social__icon {
+			margin-right: 0.25em;
 		}
 	}
 }

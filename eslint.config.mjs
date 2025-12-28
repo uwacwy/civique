@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 
 import { FlatCompat } from "@eslint/eslintrc";
 import js from "@eslint/js";
-import prettierPlugin from "eslint-plugin-prettier";
+import prettier from "eslint-plugin-prettier";
 import globals from "globals";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -41,21 +41,21 @@ export default [
 			},
 		},
 		plugins: {
-			prettier: prettierPlugin,
+			prettier,
 		},
 		rules: {
 			// ...(configPrettier.rules ?? {}),
-			"max-len": [
-				"warn",
-				{
-					code: 100,
-					ignoreComments: true,
-					ignoreUrls: true,
-					ignoreStrings: true,
-					ignoreTemplateLiterals: true,
-				},
-			],
-			"prettier/prettier": "off",
+			// "max-len": [
+			// 	"warn",
+			// 	{
+			// 		code: 100,
+			// 		ignoreComments: true,
+			// 		ignoreUrls: true,
+			// 		ignoreStrings: true,
+			// 		ignoreTemplateLiterals: true,
+			// 	},
+			// ],
+			"prettier/prettier": ["warn"],
 		},
 	},
 ];

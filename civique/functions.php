@@ -105,24 +105,24 @@ if (!function_exists("civique_register_widgets")):
 	add_action("widgets_init", "civique_register_widgets");
 endif;
 
-if (!function_exists("lhs_navigation_menus")):
+if (!function_exists("civique_navigation_menus")):
 	// Register Navigation Menus
-	function lhs_navigation_menus()
+	function civique_navigation_menus()
 	{
 		$locations = [
-			"main-menu" => __("Main Menu", "lhs"),
-			"footer-menu" => __("Footer Menu", "lhs"),
-			"front-page-quick-menu" => __("Front Page Quick Menu", "lhs"),
+			"main-menu" => __("Main Menu", "civique"),
+			"footer-menu" => __("Footer Menu", "civique"),
+			"front-page-quick-menu" => __("Front Page Quick Menu", "civique"),
 		];
 		register_nav_menus($locations);
 	}
 
 	// Hook into the 'init' action
-	add_action("init", "lhs_navigation_menus");
+	add_action("init", "civique_navigation_menus");
 endif;
 
-if (!function_exists("lhs_enqueue_js_css")):
-	function lhs_enqueue_js_css()
+if (!function_exists("civique_enqueue_js_css")):
+	function civique_enqueue_js_css()
 	{
 		wp_enqueue_style("civique", get_template_directory_uri() . "/civique.css");
 		wp_enqueue_style("dashicons");
@@ -134,19 +134,19 @@ if (!function_exists("lhs_enqueue_js_css")):
 		}
 	}
 
-	add_action("wp_enqueue_scripts", "lhs_enqueue_js_css");
+	add_action("wp_enqueue_scripts", "civique_enqueue_js_css");
 endif;
 
-if (!function_exists("lhs_custom_sidebar")):
+if (!function_exists("civique_custom_sidebar")):
 	// Register Sidebar
-	function lhs_custom_sidebar()
+	function civique_custom_sidebar()
 	{
 		$args = [
 			"id" => "right-sidebar",
-			"name" => __("Right Sidebar", "lhs"),
+			"name" => __("Right Sidebar", "civique"),
 			"description" => __(
 				"Include widgets here to provide convenient supplementary information to your visitors.",
-				"lhs",
+				"civique",
 			),
 			"before_widget" => __('<li id="%1$s" class="widget %2$s">'),
 			"after_widget" => __("</li>\n"),
@@ -157,40 +157,40 @@ if (!function_exists("lhs_custom_sidebar")):
 	}
 
 	// Hook into the 'widgets_init' action
-	add_action("widgets_init", "lhs_custom_sidebar");
+	add_action("widgets_init", "civique_custom_sidebar");
 endif;
 
 /*
 
 
-	lhs_admin_init()
+	civique_admin_init()
 	--
 	registers custom settings
 */
 
-if (!function_exists("lhs_admin_init")):
-	function lhs_admin_init()
+if (!function_exists("civique_admin_init")):
+	function civique_admin_init()
 	{
 		$settings = [
-			"lhs_facebook",
-			"lhs_twitter",
-			"lhs_address_1",
-			"lhs_address_2",
-			"lhs_city",
-			"lhs_state",
-			"lhs_zip_code",
-			"lhs_phone_number",
-			"lhs_custom_css",
-			"lhs_home_intro",
+			"civique_facebook",
+			"civique_twitter",
+			"civique_address_1",
+			"civique_address_2",
+			"civique_city",
+			"civique_state",
+			"civique_zip_code",
+			"civique_phone_number",
+			"civique_custom_css",
+			"civique_home_intro",
 			"omega_ein",
 		];
 
 		foreach ($settings as $setting) {
-			register_setting("lhs-settings", $setting);
+			register_setting("civique-settings", $setting);
 		}
 	}
 
-	add_action("admin_init", "lhs_admin_init");
+	add_action("admin_init", "civique_admin_init");
 endif;
 
 /*

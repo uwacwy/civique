@@ -28,14 +28,24 @@
 //
 //	Project Resources
 //	--
-//	These resources are specific to Laramie Head Start
+//	These resources are specific to Civique
 //
-@use "./lhs-variables";
-@use "./lhs-menu";
+@use "./civique-variables";
+@use "./civique-menu";
 
 //
 //	Civique Grid & Buttons
 //	--
 //	Custom responsive primitives replacing Bootstrap
 //
-// @import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "../../node_modules/bootstrap/scss/functions";
+@import "../../node_modules/bootstrap/scss/variables";
+// @import "../../node_modules/bootstrap/scss/utilities";
+@import "../../node_modules/bootstrap/scss/maps";
+@import "../../node_modules/bootstrap/scss/mixins";
+@import "../../node_modules/bootstrap/scss/root";
+
+@import "../../node_modules/bootstrap/scss/containers";
+@import "../../node_modules/bootstrap/scss/grid";
+// @import "../../node_modules/bootstrap/scss/type";
+// @import "../../node_modules/bootstrap/scss/utilities/api";

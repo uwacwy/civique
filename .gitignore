@@ -3,8 +3,14 @@ vendor/
 composer.phar
 dist/
 civique/js/dist/
-wp-content/
 copilot.todo.md
+
+# docker volumes
+wp/
+
+# these are compiled in place so that you can run `npm run watch`
+# and see changes immediately
+#
 civique/assets/
 civique/civique.css
 civique/civique.css.map

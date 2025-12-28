@@ -42,8 +42,8 @@
 			<div class="col-md-9">
 				<h3><?php bloginfo("name"); ?></h3>
 				<p><?php
-					$description = get_bloginfo("description");
-					echo wptexturize($description); ?></p>
+						$description = get_bloginfo("description");
+						echo wptexturize($description); ?></p>
 				<ul class="inline">
 					<?php wp_nav_menu([
 						"theme_location" => "footer-menu",
@@ -53,11 +53,20 @@
 				</ul>
 				<hr>
 				<?php
+
+				// should be fully qualified links
 				$links = [
 					"twitter" => civique_get_theme_mod("social", "twitter"),
 					"facebook" => civique_get_theme_mod("social", "facebook"),
 					"instagram" => civique_get_theme_mod("social", "instagram"),
 					"email" => civique_get_theme_mod("social", "email"),
+				];
+
+				$labels = [
+					"twitter" => __("Twitter", "civique"),
+					"facebook" => __("Facebook", "civique"),
+					"instagram" => __("Instagram", "civique"),
+					"email" => __("Email", "civique"),
 				];
 
 				// if any social links are set, show the social section
@@ -72,37 +81,40 @@
 							if (empty($value)) {
 								continue;
 							}
-							switch ($type) {
-								case "twitter":
-									echo sprintf(
-										'<li><a href="https://twitter.com/%s" class="icon-twitter" aria-label="Twitter"></a></li>',
-										h($value),
-									);
-									break;
-								case "facebook":
-									echo sprintf(
-										'<li><a href="%s" class="icon-facebook" aria-label="Facebook"></a></li>',
-										h($value),
-									);
-									break;
-								case "instagram":
-									echo sprintf(
-										'<li><a href="https://instagram.com/%s" class="icon-instagram" aria-label="Instagram"></a></li>',
-										h($value),
-									);
-									break;
-								case "email":
-									echo sprintf(
-										'<li><a href="mailto:%s" class="icon-email" aria-label="Email"></a></li>',
-										h($value),
-									);
-									break;
-							}
+							echo HtmlHelpers::tag(
+								"li",
+								[
+									"class" => "social__item"
+								],
+								HtmlHelpers::tag(
+									"a",
+									[
+										"href" => esc_url(
+											$type === "email" ? "mailto:" . antispambot($value) : $value
+										),
+										"class" => sprintf("social__link social__link--%s", $type),
+										"target" => "_blank",
+										"rel" => "noopener noreferrer",
+									],
+									implode('', [
+										HtmlHelpers::tag("span", ["class" => sprintf("social__icon dashicons dashicons-%s", $type)], ""),
+										HtmlHelpers::tag("span", ["class" => "label"], esc_html($labels[$type])),
+									])
+								)
+							);
 						} ?>
 					</ul>
 				<?php endif; ?>
 				<p>&copy; <?php echo date("Y"); ?> <?php bloginfo("name"); ?></p>
-				<p>Powered by <a href="http://www.wordpress.org">WordPress</a> and Civique for WordPress</p>
+				<?php echo HtmlHelpers::tag(
+					'p',
+					[],
+					sprintf(
+						__('Proudly powered by %s and %s.', 'civique'),
+						HtmlHelpers::tag('a', ['href' => 'http://www.wordpress.org', 'target' => '_blank'], 'WordPress'),
+						HtmlHelpers::tag('a', ['href' => 'https://github.com/uwacwy/civique', 'target' => '_blank'], 'Civique for WordPress'),
+					)
+				); ?>
 			</div>
 		</div>
 	</div>

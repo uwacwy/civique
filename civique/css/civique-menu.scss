@@ -1,11 +1,11 @@
 //
-//	lhs-menu.scss
+//	civique-menu.scss
 //	--
 //	compiles the menu
 //
 
 @use "./theme-tools" as *;
-@use "./lhs-variables" as *;
+@use "./civique-variables" as *;
 
 .headroom {
 	@include transition(transform 200ms linear);
@@ -281,7 +281,7 @@ header.main-header {
 
 					> a {
 						background: #fff;
-						color: $lhs-blue;
+						color: $civique-blue;
 					}
 
 					> ul.sub-menu {
@@ -416,7 +416,7 @@ header.main-header {
 					&:focus {
 						background-color: $structure-color !important;
 						border-bottom-color: $menu-background-color;
-						color: $lhs-blue;
+						color: $civique-blue;
 					}
 				}
 				.search-submit {
