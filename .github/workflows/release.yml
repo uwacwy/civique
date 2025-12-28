@@ -26,18 +26,10 @@ jobs:
            run: npm ci
 
          - name: Build distributable zip
-           run: npm run build:theme
+           run: npm run build
 
          - name: Upload artifact
            uses: actions/upload-artifact@v4
            with:
               name: civique-bundle
               path: dist/civique-*.zip
-
-         - name: Attach asset to release
-           if: github.event_name == 'release'
-           uses: softprops/action-gh-release@v1
-           with:
-              files: dist/civique-*.zip
-           env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
